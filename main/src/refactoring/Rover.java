@@ -29,10 +29,10 @@ public class Rover {
 	}
 
 	{
-		actions.put(Order.Forward, () -> position = position.forward(this.heading));
-		actions.put(Order.Backward, () -> position = position.backward(this.heading));
-		actions.put(Order.Left, () -> heading = heading.turnLeft());
-		actions.put(Order.Right, () -> heading = heading.turnRight());
+		actions.put(Forward, () -> position = position.forward(this.heading));
+		actions.put(Backward, () -> position = position.backward(this.heading));
+		actions.put(Left, () -> heading = heading.turnLeft());
+		actions.put(Right, () -> heading = heading.turnRight());
 	}
 
 	public Heading heading() {
