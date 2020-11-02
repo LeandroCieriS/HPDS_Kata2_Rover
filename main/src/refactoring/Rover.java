@@ -73,19 +73,24 @@ public class Rover {
 
 		//TODO: Refactor
 		public Position forward(Heading heading) {
-			if (heading == North) return new Position(x, y + 1);
-			if (heading == South) return new Position(x, y - 1);
-			if (heading == East) return new Position(x + 1, y);
-			if (heading == West) return new Position(x - 1, y);
-			return null;
+			if (heading.isVertical()) return verticalMovement(heading, 1);
+			return horizontalMovement(heading, 1);
 		}
 
 		public Position backward(Heading heading) {
-			if (heading == North) return new Position(x,y-1);
-			if (heading == South) return new Position(x,y+1);
-			if (heading == East) return new Position(x-1,y);
-			if (heading == West) return new Position(x+1,y);
-			return null;
+			if (heading.isVertical()) return verticalMovement(heading, -1);
+			return horizontalMovement(heading, -1);
+		}
+
+		//TODO: Refactorizar para que no tenga dos parametros
+		private Position verticalMovement(Heading heading, int sign) {
+			if (heading == North) return new Position(x, y + sign);
+			return new Position(x, y - sign);
+		}
+
+		private Position horizontalMovement(Heading heading, int sign) {
+			if (heading == East) return new Position(x + sign, y);
+			return new Position(x - sign, y);
 		}
 
 		@Override
@@ -142,6 +147,8 @@ public class Rover {
 			return headings.get(label);
 		}
 
+		public boolean isVertical () { return this == North || this == South; }
+
 		public Heading turnRight() {
 			return values()[add(+1)];
 		}
@@ -153,8 +160,5 @@ public class Rover {
 		private int add(int offset) {
 			return (this.ordinal() + offset + values().length) % values().length;
 		}
-
 	}
-
 }
-
