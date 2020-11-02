@@ -29,8 +29,8 @@ public class Rover {
 	}
 
 	{
-		actions.put(Forward, () -> position = position.forward(this.heading));
-		actions.put(Backward, () -> position = position.backward(this.heading));
+		actions.put(Forward, () -> position = position.forward(heading));
+		actions.put(Backward, () -> position = position.backward(heading));
 		actions.put(Left, () -> heading = heading.turnLeft());
 		actions.put(Right, () -> heading = heading.turnRight());
 	}
