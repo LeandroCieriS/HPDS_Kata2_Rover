@@ -13,19 +13,13 @@ public class Rover {
 	private Position position;
 	Map<Order, Action> actions = new HashMap<>();
 
-	public Rover(String facing, int x, int y) {
-		this.heading = Heading.of(facing);
-		position = new Position(x, y);
-	}
+	public Rover(String facing, int x, int y) { this(Heading.of(facing), x ,y);	}
+
+	public Rover(Heading heading, int x, int y) { this(heading, new Position(x, y)); }
 
 	public Rover(Heading heading, Position position) {
 		this.heading = heading;
 		this.position = position;
-	}
-
-	public Rover(Heading heading, int x, int y) {
-		this.heading = heading;
-		position = new Position(x, y);
 	}
 
 	{
@@ -71,7 +65,6 @@ public class Rover {
 			this.y = y;
 		}
 
-		//TODO: Refactor
 		public Position forward(Heading heading) {
 			if (heading.isVertical()) return verticalMovement(heading, 1);
 			return horizontalMovement(heading, 1);
